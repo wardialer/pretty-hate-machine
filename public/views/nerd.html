@@ -4,6 +4,6 @@
     <p>{{ tagline }}</p>
 </div>
 
-<div class="well" ng-repeat="nerd in nerds track by nerd._id">
+<div class="well" ng-repeat="nerd in nerds track by nerd._id" ng-click="delete(nerd._id)">
     {{nerd}}
 </div>

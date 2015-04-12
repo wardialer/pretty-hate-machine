@@ -18,3 +18,12 @@ exports.addNerd = function(req, res, next) {
         res.json(nerd);
     });
 };
+
+exports.deleteNerd = function(req, res, next) {
+    Nerd.remove({_id: req.params.id}, function(err, nerd) {
+        if (err)
+            res.send(500, err);
+
+        res.json('Successfully removed');
+    })
+};

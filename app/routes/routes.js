@@ -5,6 +5,7 @@ var nerds = require('./nerds');
         // server routes ===========================================================
         app.get('/api/nerds', nerds.getNerd);
         app.post('/api/nerds', nerds.addNerd);
+        app.delete('/api/nerds/:id', nerds.deleteNerd);
 
         // frontend routes =========================================================
         app.get('*', function(req, res) {
