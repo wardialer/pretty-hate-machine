@@ -3,102 +3,99 @@ module.exports = function(grunt) {
     // CONFIGURE GRUNT ===========================================================
     // ===========================================================================
     grunt.initConfig({
-
-    pkg: grunt.file.readJSON('package.json'),
-    //validate js files
-    jshint: {
-      options: {
-        reporter: require('jshint-stylish')
-      },
-      build: ['Grunfile.js', 'src/**/*.js']
-    },
-    //minify js files
-    uglify: {
-      options: {
-        banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
-      },
-      build: {
-        files: {
-          'dist/js/app.min.js': 'public/js/**/*.js'
-        }
-      }
-    },
-    //preprocess sass files
-    sass: {
-        options: {
-            sourceMap: true
+        pkg: grunt.file.readJSON('package.json'),
+        //validate js files
+        jshint: {
+          options: {
+            reporter: require('jshint-stylish')
+          },
+          build: ['Grunfile.js', 'public/js/**/*.js', 'app/**/*.js']
         },
-        dist: {
-            files: [{
-                expand: true,
-                cwd: 'public/css/sass/',
-                src: ['*.scss'],
-                dest: 'public/css',
-                ext: '.css'
-            }]
-        }
-    },
-    //minify css files
-    cssmin: {
-      options: {
-        banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
-      },
-      build: {
-        files: {
-          'dist/css/style.min.css': 'public/css/**/*.css'
-        }
-      }
-    },
-    //preprocess index.html
-    targethtml: {
-        dist: {
+        //minify js files
+        uglify: {
+          options: {
+            banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+          },
+          build: {
             files: {
-                'public/views/index.html': 'public/views/index.src.html'
+              'dist/js/app.min.js': 'public/js/**/*.js'
             }
+          }
         },
-        dev: {
-            files: {
-                'public/views/index.html': 'public/views/index.src.html'
-            }
-        }
-    },
-    //create dist package
-    compress: {
-        main: {
+        //preprocess sass files
+        sass: {
             options: {
-                archive: 'dist/<%= pkg.name %>V<%= pkg.version %>.tar.gz'
+                sourceMap: true
             },
-            files: [
-                {
+            dist: {
+                files: [{
                     expand: true,
-                    cwd: '.',
-                    src: [
-                        'dist/**/*.js',
-                        'dist/**/*.css',
-                        'public/views/**', 
-                        'config/**', 
-                        'app/**',
-                        '.bowerrc',
-                        'bower.json',
-                        'package.json',
-                        'server.js'
-                        ],
-                    dest: '',
+                    cwd: 'public/css/sass/',
+                    src: ['*.scss'],
+                    dest: 'public/css',
+                    ext: '.css'
+                }]
+            }
+        },
+        //minify css files
+        cssmin: {
+          options: {
+            banner: '/*\n <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> \n*/\n'
+          },
+          build: {
+            files: {
+              'dist/css/style.min.css': 'public/css/**/*.css'
+            }
+          }
+        },
+        //preprocess index.html
+        targethtml: {
+            dist: {
+                files: {
+                    'public/views/index.html': 'public/views/index.src.html'
                 }
-            ]
+            },
+            dev: {
+                files: {
+                    'public/views/index.html': 'public/views/index.src.html'
+                }
+            }
+        },
+        //create dist package
+        compress: {
+            main: {
+                options: {
+                    archive: 'dist/<%= pkg.name %>V<%= pkg.version %>.tar.gz'
+                },
+                files: [
+                    {
+                        expand: true,
+                        cwd: '.',
+                        src: [
+                            'dist/**/*.js',
+                            'dist/**/*.css',
+                            'public/views/**', 
+                            'config/**', 
+                            'app/**',
+                            '.bowerrc',
+                            'bower.json',
+                            'package.json',
+                            'server.js'
+                            ],
+                        dest: '',
+                    }
+                ]
+            }
+        },
+        //nodemon
+        nodemon: {
+            dev: {
+                script: './server.js'
+            }
         }
-    },
-    //nodemon
-    nodemon: {
-        dev: {
-            script: './server.js'
-        }
-    }
-
-
     });
     
-    grunt.registerTask('default', ['targethtml:dev', 'nodemon']);
+    grunt.registerTask('default', ['targethtml:dev', 'sass', 'nodemon']);
     grunt.registerTask('build', ['jshint', 'uglify', 'sass', 'cssmin', 'targethtml:dist', 'compress']);
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
