@@ -1,5 +1,5 @@
 angular.module('sampleApp', [
-    'ngRoute', 
+    'ui.router', 
     'appRoutes', 
     'MainCtrl', 
     'NerdCtrl', 

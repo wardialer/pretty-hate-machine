@@ -1,14 +1,16 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
 
-    $routeProvider
-        .when('/', {
+    $stateProvider
+        .state('home', {
+            url: '/',
             templateUrl: 'views/home.html',
             controller: 'MainController'
         })
-        .when('/nerds', {
+        .state('nerds', {
+            url: '/nerds',
             templateUrl: 'views/nerd.html',
             controller: 'NerdController'
-        });
+        })
 
     $locationProvider.html5Mode(true);
 
