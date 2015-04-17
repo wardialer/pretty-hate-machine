@@ -12,5 +12,5 @@ angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', f
             url: '/nerds',
             templateUrl: 'views/nerd.html',
             controller: 'NerdController'
-        })
+        });
 }]);

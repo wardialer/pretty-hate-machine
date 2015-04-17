@@ -17,7 +17,7 @@ angular.module('NerdCtrl', [])
                 $scope.nerds = nerds;
             });
         });
-    }
+    };
 
     //init();
 

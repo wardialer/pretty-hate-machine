@@ -25,5 +25,5 @@ exports.deleteNerd = function(req, res, next) {
             res.send(500, err);
 
         res.json('Successfully removed');
-    })
+    });
 };
