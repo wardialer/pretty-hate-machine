@@ -18,7 +18,7 @@ module.exports = function(grunt) {
           },
           build: {
             files: {
-              'dist/js/app.min.js': 'public/js/**/*.js'
+              'public/dist/js/app.min.js': 'public/js/**/*.js'
             }
           }
         },
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
           },
           build: {
             files: {
-              'dist/css/style.min.css': 'public/css/**/*.css'
+              'public/dist/css/style.min.css': 'public/css/**/*.css'
             }
           }
         },
@@ -65,15 +65,15 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'dist/<%= pkg.name %>V<%= pkg.version %>.tar.gz'
+                    archive: 'public/dist/<%= pkg.name %>V<%= pkg.version %>.tar.gz'
                 },
                 files: [
                     {
                         expand: true,
                         cwd: '.',
                         src: [
-                            'dist/**/*.js',
-                            'dist/**/*.css',
+                            'public/dist/**/*.js',
+                            'public/dist/**/*.css',
                             'public/views/**', 
                             'config/**', 
                             'app/**',
