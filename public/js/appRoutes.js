@@ -1,5 +1,7 @@
 angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
-
+    
+    $locationProvider.html5Mode(true);
+    
     $stateProvider
         .state('home', {
             url: '/',
@@ -11,7 +13,4 @@ angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', f
             templateUrl: 'views/nerd.html',
             controller: 'NerdController'
         })
-
-    $locationProvider.html5Mode(true);
-
 }]);
