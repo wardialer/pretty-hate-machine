@@ -4,7 +4,7 @@ angular.module('ElementsServiceModule', []).factory('ElementsService', ['$http',
         get : function() {
             return $http.get('/api/elements');
         },
-        create : function(elem) {
+        save : function(elem) {
             return $http.post('/api/elements', elem);
         },
         delete : function(id) {

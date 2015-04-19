@@ -4,21 +4,38 @@ angular.module('ListCtrl', [])
     $scope.tagline = 'Simple list/detail implementation';
 
     var init = function() {
-        ElementsService.create({name: 'Pippo'});
+        getElements();
     };
 
-    ElementsService.get().success(function(elements) { 
-        $scope.elements = elements;
-    });
-
-    $scope.delete = function(id) {
-        ElementsService.delete(id).success(function() {
-            ElementsService.get().success(function(elements) {
-                $scope.elements = elements;
-            });
+    var getElements = function() {
+        ElementsService.get()
+        .success(function(elements) { 
+            $scope.elements = elements;
         });
     };
 
-    //init();
+    var saveElement = function(element) {
+        ElementsService.save(element)
+        .success(function(elements) {
+            if ($scope.itemName) $scope.itemName='';
+            getElements();
+        });
+    };
 
+    $scope.create = function(name) {
+        if (name) {
+            var element = {name: name};
+            saveElement(element);
+        }
+    };
+
+    $scope.delete = function(id) {
+        ElementsService.delete(id)
+        .success(function() {
+          getElements();
+        });
+    };
+
+    init();
+    
 }]);
