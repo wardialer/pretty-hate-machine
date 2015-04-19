@@ -1,9 +1,14 @@
 <div class="jumbotron text-center">
-    <h1>Nerds and Proud</h1>
+    <h1>List</h1>
 
     <p>{{ tagline }}</p>
 </div>
 
-<div class="well" ng-repeat="nerd in nerds track by nerd._id" ng-click="delete(nerd._id)">
-    {{nerd}}
+<div class="row">
+    <div class="col col-lg-4 col-sm-6" ng-repeat="nerd in nerds track by nerd._id" ng-click="delete(nerd._id)">
+        <div class="well">
+            <p><strong ng-bind="nerd._id"></strong></p>
+            <button class="btn btn-danger btn-block">Delete</button>
+        </div>
+    </div>
 </div>
