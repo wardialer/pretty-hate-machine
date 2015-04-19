@@ -1,6 +1,7 @@
 <div class="well detail">
     <button type="button" class="close" aria-label="Close" ng-click="go('/list')"><span aria-hidden="true">&times;</span></button>
-    <h2>Item id:<small> {{element._id}}</small></h2>
-    <p><strong>Name:</strong> {{element.name}}</p>
+    <h2>Element detail<small> _id {{element._id}}</small></h2>
+    <p><strong>Name:</strong> <input ng-model="element.name"/></p>
     <p><strong>Modified at:</strong> {{element.modifiedAt}}</p>
+    <button type="button" class="btn btn-info btn-sm" ng-click="update(element)">Update</button>    
 </div>
