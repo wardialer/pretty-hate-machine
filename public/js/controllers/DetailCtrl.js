@@ -1,5 +1,5 @@
 angular.module('DetailCtrl', [])
-.controller('DetailController', ['$scope', '$stateParams', function($scope, $stateParams) {
+.controller('DetailController', ['$scope', '$stateParams', 'ElementsService', function($scope, $stateParams, ElementsService) {
     
     var resolveElement = function(id) {
         for (var i = 0; i < $scope.elements.length; i++) {
@@ -8,6 +8,16 @@ angular.module('DetailCtrl', [])
                 return element;
         }
         return {};
+    };
+
+    $scope.update = function(element) {
+        ElementsService.save(element)
+        .success(function(element) {
+            $scope.element = element;
+        })
+        .error(function(error, status) {
+            console.log(error);
+        });
     };
 
     $scope.element = resolveElement($stateParams.id);
