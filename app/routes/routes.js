@@ -1,15 +1,13 @@
-var nerds = require('./nerds');
+var elements = require('./elements');
 
-    module.exports = function(app) {
+module.exports = function(app) {
+    // server routes ===========================================================
+    app.get('/api/elements', elements.getElement);
+    app.post('/api/elements', elements.addElement);
+    app.delete('/api/elements/:id', elements.deleteElement);
 
-        // server routes ===========================================================
-        app.get('/api/nerds', nerds.getNerd);
-        app.post('/api/nerds', nerds.addNerd);
-        app.delete('/api/nerds/:id', nerds.deleteNerd);
-
-        // frontend routes =========================================================
-        app.get('*', function(req, res) {
-            res.sendfile('./public/views/index.html'); // load our public/index.html file
-        });
-
-    };
+    // frontend routes =========================================================
+    app.get('*', function(req, res) {
+        res.sendfile('./public/views/index.html');
+    });
+};

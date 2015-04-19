@@ -2,6 +2,7 @@ angular.module('sampleApp', [
     'ui.router', 
     'appRoutes', 
     'MainCtrl', 
-    'NerdCtrl', 
-    'NerdService'
+    'ListCtrl', 
+    'DetailCtrl', 
+    'ElementsServiceModule'
 ]);

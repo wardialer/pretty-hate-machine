@@ -1,4 +1,5 @@
-angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
+angular.module('appRoutes', [])
+.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
     
     $locationProvider.html5Mode(true);
     
@@ -8,9 +9,14 @@ angular.module('appRoutes', []).config(['$stateProvider', '$locationProvider', f
             templateUrl: 'views/home.html',
             controller: 'MainController'
         })
-        .state('nerds', {
-            url: '/nerds',
-            templateUrl: 'views/nerd.html',
-            controller: 'NerdController'
+        .state('list', {
+            url: '/list',
+            templateUrl: 'views/list.html',
+            controller: 'ListController'
+        })
+        .state('list.detail', {
+            url: '/:id',
+            templateUrl: 'views/detail.html',
+            controller: 'DetailController'
         });
 }]);
