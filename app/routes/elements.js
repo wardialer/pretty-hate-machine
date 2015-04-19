@@ -1,7 +1,7 @@
 var Element = require('../models/element');
 var mongoose = require('mongoose');
 
-exports.getElement = function(req, res, next) {
+exports.getElements = function(req, res, next) {
     Element.find(function(err, elements) {
     if (err)
         res.send(500, err);
@@ -10,9 +10,9 @@ exports.getElement = function(req, res, next) {
     });
 };
 
-exports.addElement = function(req, res, next) {
+exports.saveElement = function(req, res, next) {
     var element = new Element(req.body);
-    element.save(function(err, element) {
+    Element.findOneAndUpdate({_id : element._id}, element, {upsert: true, new: true}, function(err, element) {
         if (err)
             res.send(500, err);
 
@@ -21,7 +21,7 @@ exports.addElement = function(req, res, next) {
 };
 
 exports.deleteElement = function(req, res, next) {
-    Element.remove({_id: req.params.id}, function(err, element) {
+    Element.remove({_id: req.params.id}, function(err, status) {
         if (err)
             res.send(500, err);
 
