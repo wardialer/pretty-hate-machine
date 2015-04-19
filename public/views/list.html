@@ -3,13 +3,13 @@
     <p>{{ tagline }}</p>
 </div>
 <div class="row">
-    <div class="pull-right col col-lg-4 col-sm-6 col-xs-12" ui-view>
+    <div class="pull-right col col-lg-8 col-sm-6 col-xs-12" ui-view>
     </div>
     <div class="col col-lg-4 col-sm-6 col-xs-12" ng-repeat="element in elements track by element._id">
         <div class="well">
             <p><strong ng-bind="element._id"></strong></p>
-            <button type="button" class="btn btn-link btn-sm pull-right" ng-click="go('list/'+element._id)">Detail</button>
-            <button type="button" class="btn btn-danger btn-sm pull-right" ng-click="delete(element._id)">Delete</button>
+            <button type="button" class="btn btn-info btn-sm pull-right" ng-click="go('list/'+element._id)">Detail</button>
+            <button type="button" class="btn btn-link btn-sm pull-right" ng-click="delete(element._id)">Delete</button>
             <div class="clearfix"></div>
         </div>
     </div>
