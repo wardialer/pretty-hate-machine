@@ -1,5 +1,21 @@
 $white: #FFFFFF;
+$primary: #FF5722;
+$dark-primary: #E64A19;
+$light-primary: #FFCCBC;
+$accent: #536DFE;
+$primary-text: #212121;
+$secondary-text: #727272;
+$divider: #B6B6B6;
 
 body { 
     background:$white;
+}
+
+.detail {
+    background-color: $primary;
+    color: $white;
+
+    h2 small {
+        color: $light-primary;
+    }
 }

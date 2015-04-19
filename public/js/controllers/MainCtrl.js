@@ -5,6 +5,6 @@ angular.module('MainCtrl', [])
 
     $scope.go = function(url) {
         $location.path(url);
-    }
+    };
 
 }]);

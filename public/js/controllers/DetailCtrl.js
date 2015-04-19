@@ -6,9 +6,9 @@ angular.module('DetailCtrl', [])
             var element = $scope.elements[i];
             if (element._id == id)
                 return element;
-        };
+        }
         return {};
-    }
+    };
 
     $scope.element = resolveElement($stateParams.id);
 
