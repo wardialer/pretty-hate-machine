@@ -65,7 +65,7 @@ module.exports = function(grunt) {
         compress: {
             main: {
                 options: {
-                    archive: 'public/dist/<%= pkg.name %>V<%= pkg.version %>.tar.gz'
+                    archive: 'public/dist/<%= pkg.version %>/<%= pkg.name %>.tar.gz'
                 },
                 files: [
                     {
@@ -87,15 +87,37 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        //autoupdate
+        watch: {
+            stylesheets: { 
+                files: ['public/css/sass/*.scss'], 
+                tasks: ['sass'] 
+            },
+            scripts: { 
+                files: ['app/**/*.js', 'config/**/*.js', 'public/js/**/*.js'],
+                tasks: ['jshint'] 
+            },
+            html: {
+                files: 'public/views/index.src.html',
+                tasks: ['targethtml:dev']
+            }
+        },
         //nodemon
         nodemon: {
             dev: {
                 script: './server.js'
             }
+        },
+        //parallell execution of nodemon and watch
+        concurrent:{
+            options: {
+                logConcurrentOutput: true
+            },
+            tasks: ['nodemon', 'watch'],
         }
     });
     
-    grunt.registerTask('default', ['targethtml:dev', 'sass', 'nodemon']);
+    grunt.registerTask('default', ['jshint', 'sass', 'targethtml:dev', 'concurrent']);
     grunt.registerTask('build', ['jshint', 'uglify', 'sass', 'cssmin', 'targethtml:dist', 'compress']);
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -106,5 +128,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-targethtml');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-concurrent');
 
 };

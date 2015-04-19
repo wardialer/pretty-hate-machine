@@ -18,6 +18,7 @@
         "grunt-targethtml": "latest",
         "grunt-contrib-compress": "latest",
         "grunt-contrib-watch": "latest",
-        "grunt-nodemon": "latest"
+        "grunt-nodemon": "latest", 
+        "grunt-concurrent": "latest"
       }
 }
