@@ -7,4 +7,8 @@ angular.module('MainCtrl', [])
         $location.path(url);
     };
 
+    $scope.errorHandler = function(err, type) {
+
+    }
+
 }]);
