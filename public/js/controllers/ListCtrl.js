@@ -1,8 +1,6 @@
 angular.module('ListCtrl', [])
 .controller('ListController', ['$scope', 'ElementsService', function($scope, ElementsService) {
 
-    $scope.tagline = 'Simple list/detail implementation';
-
     var init = function() {
         getElements();
     };
@@ -11,21 +9,26 @@ angular.module('ListCtrl', [])
         ElementsService.get()
         .success(function(elements) { 
             $scope.elements = elements;
-        });
-    };
-
-    var saveElement = function(element) {
-        ElementsService.save(element)
-        .success(function(elements) {
-            if ($scope.itemName) $scope.itemName='';
-            getElements();
+        })
+        .error(function(error, status) {
+            $scope.errorHandler(error, 'danger');
         });
     };
 
     $scope.create = function(name) {
         if (name) {
             var element = {name: name};
-            saveElement(element);
+
+            ElementsService.save(element)
+            .success(function(elements) {
+                if ($scope.itemName) $scope.itemName='';
+                getElements();
+            })
+            .error(function(error, status) {
+                $scope.errorHandler(error, 'danger');
+            });
+        } else {
+            $scope.errorHandler('Element name is required!','info');
         }
     };
 
@@ -33,6 +36,9 @@ angular.module('ListCtrl', [])
         ElementsService.delete(id)
         .success(function() {
           getElements();
+        })
+        .error(function(error, status) {
+            $scope.errorHandler(error, 'danger');
         });
     };
 

@@ -1,14 +1,21 @@
 angular.module('MainCtrl', [])
-.controller('MainController', ['$scope', '$location', function($scope, $location) {
+.controller('MainController', ['$scope', '$location', '$timeout', function($scope, $location, $timeout) {
 
-    $scope.tagline = 'This is where it starts!';   
+    var duration = 3000;
 
     $scope.go = function(url) {
         $location.path(url);
     };
 
     $scope.errorHandler = function(err, type) {
+        $scope.alert = {type: type, message: err};
+        $timeout(function() {
+            $scope.clearAlerts();
+        }, duration);
+    };
 
-    }
+    $scope.clearAlerts = function() {
+        $scope.alert = null;
+    };
 
 }]);

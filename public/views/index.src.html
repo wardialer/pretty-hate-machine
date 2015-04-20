@@ -38,6 +38,11 @@
         </ul>
     </nav>
 
+    <div ng-if="alert" class="alert alert-{{alert.type}} alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="clearAlerts()"><span aria-hidden="true">&times;</span></button>
+      <span ng-bind="alert.message"></span>
+    </div>
+    
     <div ui-view></div>
 
 </div>

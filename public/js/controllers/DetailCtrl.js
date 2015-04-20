@@ -16,7 +16,7 @@ angular.module('DetailCtrl', [])
             $scope.element = element;
         })
         .error(function(error, status) {
-            console.log(error);
+            $scope.errorHandler(error, 'danger');
         });
     };
 
