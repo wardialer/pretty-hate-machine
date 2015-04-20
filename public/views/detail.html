@@ -1,7 +1,15 @@
 <div class="well detail">
     <button type="button" class="close" aria-label="Close" ng-click="go('/list')"><span aria-hidden="true">&times;</span></button>
     <h2>Element detail<small> _id {{element._id}}</small></h2>
-    <p><strong>Name:</strong> <input ng-model="element.name"/></p>
-    <p><strong>Modified at:</strong> {{element.modifiedAt}}</p>
-    <button type="button" class="btn btn-info btn-sm" ng-click="update(element)">Update</button>    
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="detailitemname">Item name</label>
+            <div class="input-group">
+                <div class="input-group-addon">Name</div>
+                <input type="text" class="form-control" id="detailitemname" placeholder="item name" ng-model="element.name">
+            </div>
+        </div>
+    </form>
+    <button type="button" class="pull-right btn btn-info btn-sm" ng-click="update(element)">Update</button>
+    <div class="clearfix"></div>    
 </div>
