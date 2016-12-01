@@ -2,11 +2,18 @@ var Element = require('../models/element');
 var mongoose = require('mongoose');
 
 exports.getElements = function(req, res, next) {
-    Element.find(function(err, elements) {
+    var query = {};
+    var id = req.params.id;
+
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        query._id = id;
+    }
+
+    Element.find(query, function(err, elements) {
     if (err)
         res.send(500, err);
-    
-    res.json(elements); 
+
+    res.json(elements);
     });
 };
 

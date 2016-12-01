@@ -1,0 +1,19 @@
+{
+    "browser": true,
+    "node": true,
+    "devel": true,
+    "asi": true,
+    "curly": false,
+    "laxbreak": true,
+    "laxcomma": true,
+    "proto": true,
+    "undef": true,
+    "unused": "vars",
+    "nonbsp": true,
+    "globals": {
+        "angular": true,
+        "io": true,
+        "google": true,
+		"_": true
+    }
+}

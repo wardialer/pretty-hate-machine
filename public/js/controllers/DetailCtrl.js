@@ -1,25 +1,47 @@
-angular.module('DetailCtrl', [])
-.controller('DetailController', ['$scope', '$stateParams', 'ElementsService', function($scope, $stateParams, ElementsService) {
-    
-    var resolveElement = function(id) {
-        for (var i = 0; i < $scope.elements.length; i++) {
-            var element = $scope.elements[i];
-            if (element._id == id)
-                return element;
+(function() {
+    'use strict';
+
+    angular
+        .module('sampleApp')
+        .controller('DetailController', Controller);
+
+    Controller.$inject = ['$stateParams', '$location', 'ElementsService'];
+
+    /* @ngInject */
+    function Controller($stateParams, $location, ElementsService) {
+        var vm = this;
+
+        activate();
+
+        function activate() {
+            resolveElement($stateParams.id);
+            vm.update = update;
+            vm.go = go;
         }
-        return {};
-    };
 
-    $scope.update = function(element) {
-        ElementsService.save(element)
-        .success(function(element) {
-            $scope.element = element;
-        })
-        .error(function(error, status) {
-            $scope.errorHandler(error, 'danger');
-        });
-    };
+        function go(url) {
+            $location.path(url);
+        }
 
-    $scope.element = resolveElement($stateParams.id);
+        function resolveElement(id) {
+            ElementsService.get(id)
+            .success(function(elements) {
+                vm.element = elements.pop();
+            })
+            .error(function(error) {
+                vm.errorHandler(error, 'danger');
+            });
+        }
 
-}]);
+        function update(element) {
+            ElementsService.save(element)
+            .success(function(element) {
+                vm.element = element;
+            })
+            .error(function(error, status) {
+                vm.errorHandler(error, 'danger');
+            });
+        }
+
+    }
+})();

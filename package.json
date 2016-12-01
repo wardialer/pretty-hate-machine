@@ -1,24 +1,25 @@
 {
-    "name": "starter-node-angular",
-    "version": "0.0.1",
-    "main": "server.js",
-    "dependencies": {
-        "express" : "~4.5.1",
-        "mongoose" : "~4.0.1",
-        "body-parser" : "~1.4.2",
-        "method-override" : "~2.0.2"        
-    },
-    "devDependencies": {
-        "grunt": "~0.4.4",
-        "grunt-contrib-jshint": "latest",
-        "jshint-stylish": "latest",
-        "grunt-contrib-uglify": "latest",
-        "grunt-sass": "latest",
-        "grunt-contrib-cssmin": "latest",
-        "grunt-targethtml": "latest",
-        "grunt-contrib-compress": "latest",
-        "grunt-contrib-watch": "latest",
-        "grunt-nodemon": "latest", 
-        "grunt-concurrent": "latest"
-      }
+  "name": "starter-node-angular",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.5.1",
+    "mongoose": "~4.0.1",
+    "body-parser": "~1.4.2",
+    "method-override": "~2.0.2",
+    "morgan": "~1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-jshint": "latest",
+    "jshint-stylish": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-sass": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-targethtml": "latest",
+    "grunt-contrib-compress": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-nodemon": "latest",
+    "grunt-concurrent": "latest"
+  }
 }

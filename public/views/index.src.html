@@ -18,16 +18,15 @@
         <link rel="stylesheet" href="css/style.css">
         <script src="libs/angular/angular.js"></script>
         <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="js/controllers/MainCtrl.js"></script>
+        <script src="js/app.js"></script>
         <script src="js/controllers/ListCtrl.js"></script>
         <script src="js/controllers/DetailCtrl.js"></script>
         <script src="js/services/ElementsService.js"></script>
         <script src="js/appRoutes.js"></script>
-        <script src="js/app.js"></script>
     <!--<!(endif)-->
-    
+
 </head>
-<body ng-app="sampleApp" ng-controller="MainController">
+<body ng-app="sampleApp">
 <div class="container">
     <nav class="navbar navbar-inverse">
         <div class="navbar-header">
@@ -42,7 +41,7 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="clearAlerts()"><span aria-hidden="true">&times;</span></button>
       <span ng-bind="alert.message"></span>
     </div>
-    
+
     <div ui-view></div>
 
 </div>

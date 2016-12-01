@@ -1,47 +1,64 @@
-angular.module('ListCtrl', [])
-.controller('ListController', ['$scope', 'ElementsService', function($scope, ElementsService) {
+(function() {
+    'use strict';
 
-    var init = function() {
-        getElements();
-    };
+    angular
+        .module('sampleApp')
+        .controller('ListController', Controller);
 
-    var getElements = function() {
-        ElementsService.get()
-        .success(function(elements) { 
-            $scope.elements = elements;
-        })
-        .error(function(error, status) {
-            $scope.errorHandler(error, 'danger');
-        });
-    };
+    Controller.$inject = ['$location', 'ElementsService'];
 
-    $scope.create = function(name) {
-        if (name) {
-            var element = {name: name};
+    /* @ngInject */
+    function Controller($location, ElementsService) {
+        var vm = this;
 
-            ElementsService.save(element)
+        activate();
+
+        function activate() {
+            getElements();
+            vm.create = create;
+            vm.delete = remove;
+            vm.go = go;
+        }
+
+        function go(url) {
+            $location.path(url);
+        }
+
+        function getElements() {
+            ElementsService.get()
             .success(function(elements) {
-                if ($scope.itemName) $scope.itemName='';
-                getElements();
+                vm.elements = elements;
             })
             .error(function(error, status) {
-                $scope.errorHandler(error, 'danger');
+                vm.errorHandler(error, 'danger');
             });
-        } else {
-            $scope.errorHandler('Element name is required!','info');
         }
-    };
 
-    $scope.delete = function(id) {
-        ElementsService.delete(id)
-        .success(function() {
-          getElements();
-        })
-        .error(function(error, status) {
-            $scope.errorHandler(error, 'danger');
-        });
-    };
+         function create(name) {
+            if (name) {
+                var element = {name: name};
 
-    init();
-    
-}]);
+                ElementsService.save(element)
+                .success(function(elements) {
+                    if (vm.itemName) vm.itemName='';
+                    getElements();
+                })
+                .error(function(error, status) {
+                    vm.errorHandler(error, 'danger');
+                });
+            } else {
+                vm.errorHandler('Element name is required!','info');
+            }
+        }
+
+        function remove(id) {
+            ElementsService.delete(id)
+            .success(function() {
+              getElements();
+            })
+            .error(function(error, status) {
+                vm.errorHandler(error, 'danger');
+            });
+        }
+    }
+})();
