@@ -1,3 +1,6 @@
+# OUT-OF-DATE!
+please refer to: https://github.com/wardialer/kickstarter-mean
+
 # pretty-hate-machine
 My personal kickstarter for MEAN applications. It's based on [scotch.io](http://scotch.io) tutorials.
 
